@@ -6,6 +6,12 @@
   --color-marked: #dcfce7;
   --color-marked-border: #22c55e;
   --color-bingo: #fbbf24;
+  --color-sticker-blue: #5b9bd5;
+  --color-sticker-pink: #f472b6;
+  --color-sticker-yellow: #fbbf24;
+  --color-paper: #f9f5ed;
+  --font-fredoka: 'Fredoka', system-ui, sans-serif;
+  --font-handwritten: 'Covered By Your Grace', cursive;
 }
 
 html,
@@ -18,4 +24,25 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Sticker glossy effect */
+.sticker-glossy {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 60%);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* Paper texture effect */
+.paper-texture {
+  background-color: #ffffff;
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 3px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 3px);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 3px 8px rgba(0, 0, 0, 0.06);
 }
