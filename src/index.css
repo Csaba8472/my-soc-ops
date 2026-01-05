@@ -6,6 +6,14 @@
   --color-marked: #dcfce7;
   --color-marked-border: #22c55e;
   --color-bingo: #fbbf24;
+  --color-sticker-blue: #5b9bd5;
+  --color-sticker-pink: #ff69b4;
+  --color-sticker-yellow: #ffd93d;
+  --color-sticker-green: #6bcf7f;
+  --color-sticker-orange: #ff9a56;
+  --color-sticker-purple: #b794f6;
+  --font-sticker: 'Fredoka', system-ui, sans-serif;
+  --font-handwritten: 'Covered By Your Grace', cursive;
 }
 
 html,
@@ -18,4 +26,76 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Sticker Design System */
+.sticker-glossy {
+  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.sticker-glossy::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  right: 50%;
+  bottom: 60%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.cork-texture {
+  background-color: #d4a574;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,.05) 10px, rgba(0,0,0,.05) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,.03) 10px, rgba(0,0,0,.03) 20px);
+}
+
+.sticky-note {
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.05) 100%);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.1),
+    inset 0 -2px 0 rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.sticky-note::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 16px 16px 0;
+  border-color: transparent rgba(0,0,0,0.1) transparent transparent;
+}
+
+.pushpin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.3),
+    inset 0 1px 2px rgba(255,255,255,0.5),
+    inset 0 -1px 2px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.pushpin::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
 }
