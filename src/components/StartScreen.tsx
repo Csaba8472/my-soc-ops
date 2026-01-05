@@ -6,18 +6,14 @@ interface StartScreenProps {
 
 // Colors for mini preview squares
 const previewColors = [
-  'bg-[#5b9bd5]', // blue
-  'bg-[#f472b6]', // pink
-  'bg-[#fbbf24]', // yellow
+  'bg-[--color-sticker-blue]', // blue
+  'bg-[--color-sticker-pink]', // pink
+  'bg-[--color-sticker-yellow]', // yellow
 ];
 
 export function StartScreen({ onStart }: StartScreenProps) {
-  // Select 3 sample questions for preview
-  const sampleQuestions = [
-    questions[0],  // "bikes to work"
-    questions[4],  // "plays an instrument"
-    questions[12], // "loves cooking"
-  ];
+  // Select 3 sample questions for preview (using slice for robustness)
+  const sampleQuestions = questions.slice(0, 3);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-full p-4 sm:p-6 relative" style={{ backgroundColor: '#f9f5ed' }}>
@@ -35,9 +31,8 @@ export function StartScreen({ onStart }: StartScreenProps) {
         {/* Hero Section */}
         <div className="space-y-3">
           <h1 
-            className="text-5xl sm:text-6xl font-bold text-white px-8 py-4 rounded-2xl inline-block sticker-glossy -rotate-1"
+            className="text-5xl sm:text-6xl font-bold text-white px-8 py-4 rounded-2xl inline-block sticker-glossy -rotate-1 bg-[--color-sticker-blue]"
             style={{ 
-              backgroundColor: '#5b9bd5',
               fontFamily: 'var(--font-fredoka)',
             }}
           >
@@ -101,7 +96,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         {/* Prominent Start Button */}
         <button
           onClick={onStart}
-          className="w-full max-w-xs mx-auto bg-[#5b9bd5] text-white font-semibold py-4 px-8 rounded-2xl text-xl sticker-glossy transition-transform hover:scale-105 active:scale-100 shadow-lg"
+          className="w-full max-w-xs mx-auto bg-[--color-sticker-blue] text-white font-semibold py-4 px-8 rounded-2xl text-xl sticker-glossy transition-transform hover:scale-105 active:scale-100 shadow-lg"
           style={{ fontFamily: 'var(--font-fredoka)' }}
         >
           Start Game 🎮
