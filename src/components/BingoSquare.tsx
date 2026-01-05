@@ -7,28 +7,61 @@ interface BingoSquareProps {
 }
 
 export function BingoSquare({ square, isWinning, onClick }: BingoSquareProps) {
-  const baseClasses =
-    'relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight';
+  // Sticker colors rotation
+  const stickerColors = [
+    'bg-[#5b9bd5]', // blue
+    'bg-[#ff69b4]', // pink
+    'bg-[#6bcf7f]', // green
+    'bg-[#ff9a56]', // orange
+    'bg-[#b794f6]', // purple
+    'bg-[#ffd93d]', // yellow
+  ];
+  
+  const stickerColor = stickerColors[square.id % stickerColors.length];
+  
+  // Organic rotation for natural sticker scatter
+  const rotations = ['rotate-1', '-rotate-1', 'rotate-2', '-rotate-2', 'rotate-0'];
+  const rotation = rotations[square.id % rotations.length];
+  
+  const baseClasses = `
+    relative flex items-center justify-center p-2 text-center rounded-2xl
+    transition-all duration-200 select-none min-h-[60px] text-xs leading-tight font-semibold
+    cursor-pointer border-2 border-white/40
+    ${rotation}
+  `;
+
+  // Sticker shadow and depth
+  const shadowClasses = square.isMarked
+    ? 'shadow-[0_1px_3px_rgba(0,0,0,0.15),0_2px_6px_rgba(0,0,0,0.1),inset_0_-2px_4px_rgba(0,0,0,0.1)]'
+    : 'shadow-[0_3px_6px_rgba(0,0,0,0.12),0_6px_12px_rgba(0,0,0,0.08),0_12px_24px_rgba(0,0,0,0.05)]';
 
   const stateClasses = square.isMarked
     ? isWinning
-      ? 'bg-amber-200 border-amber-400 text-amber-900'
-      : 'bg-marked border-marked-border text-green-800'
-    : 'bg-white text-gray-700 active:bg-gray-100';
+      ? 'bg-[#ffd93d] text-amber-900 scale-105'
+      : `${stickerColor} text-white scale-100 opacity-90`
+    : `${stickerColor} text-white hover:scale-105 active:scale-95`;
 
-  const freeSpaceClasses = square.isFreeSpace ? 'font-bold text-sm' : '';
+  const freeSpaceClasses = square.isFreeSpace ? 'font-bold text-base scale-110' : '';
 
   return (
     <button
       onClick={onClick}
       disabled={square.isFreeSpace}
-      className={`${baseClasses} ${stateClasses} ${freeSpaceClasses}`}
+      className={`${baseClasses} ${stateClasses} ${shadowClasses} ${freeSpaceClasses} sticker-glossy`}
       aria-pressed={square.isMarked}
       aria-label={square.isFreeSpace ? 'Free space' : square.text}
     >
-      <span className="wrap-break-word hyphens-auto">{square.text}</span>
+      <span className="relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+        {square.text}
+      </span>
       {square.isMarked && !square.isFreeSpace && (
-        <span className="absolute top-0.5 right-0.5 text-green-600 text-xs">✓</span>
+        <span className="absolute top-1 right-1.5 text-white text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] z-20">
+          ✓
+        </span>
+      )}
+      {/* Peel effect on marked stickers */}
+      {square.isMarked && !square.isFreeSpace && (
+        <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-white/30 rounded-full blur-[2px]" />
       )}
     </button>
   );
