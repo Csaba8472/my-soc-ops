@@ -6,6 +6,8 @@
   --color-marked: #dcfce7;
   --color-marked-border: #22c55e;
   --color-bingo: #fbbf24;
+  --font-sticker: 'Fredoka', system-ui, sans-serif;
+  --font-handwritten: 'Covered By Your Grace', cursive;
 }
 
 html,
@@ -18,4 +20,58 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Sticker styles */
+.sticker-glossy {
+  font-family: var(--font-sticker);
+  background: linear-gradient(135deg, currentColor 0%, currentColor 100%);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1),
+    inset 0 -2px 4px 0 rgb(0 0 0 / 0.1),
+    inset 0 2px 4px 0 rgb(255 255 255 / 0.2);
+  position: relative;
+}
+
+.sticker-glossy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0.3), transparent);
+  border-radius: 0.5rem 0.5rem 0 0;
+  pointer-events: none;
+}
+
+.sticker-emboss {
+  text-shadow: 
+    0 1px 0 rgb(255 255 255 / 0.3),
+    0 -1px 0 rgb(0 0 0 / 0.2);
+}
+
+.font-handwritten {
+  font-family: var(--font-handwritten);
+}
+
+/* Peel effect for marked squares */
+.peel-effect {
+  transform: scale(1.05);
+  box-shadow: 
+    2px 2px 4px rgb(0 0 0 / 0.15),
+    -1px -1px 2px rgb(255 255 255 / 0.5);
+}
+
+/* Cork texture background */
+.cork-texture {
+  background-color: #d4a574;
+  background-image: 
+    radial-gradient(circle at 20% 30%, #c99765 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, #e6c8a3 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #c99765 0.5px, transparent 0.5px);
+  background-size: 50px 50px, 70px 70px, 30px 30px;
 }
