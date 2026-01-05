@@ -18,7 +18,7 @@ export function PreviewBingoSquare({
   const baseClasses = `
     relative flex items-center justify-center p-2 text-center
     border-2 rounded-lg transition-all duration-200 select-none
-    min-h-[70px] min-w-[70px] text-xs leading-tight cursor-pointer
+    min-h-[70px] min-w-[70px] text-xs leading-tight
     ${rotation}
   `;
 

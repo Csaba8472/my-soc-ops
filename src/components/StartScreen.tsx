@@ -32,7 +32,12 @@ const ROTATIONS = [
 export function StartScreen({ onStart }: StartScreenProps) {
   // Get 8 random questions for the 3x3 grid (center is FREE SPACE)
   const [previewQuestions] = useState(() => {
-    const shuffled = [...questions].sort(() => Math.random() - 0.5);
+    // Fisher-Yates shuffle
+    const shuffled = [...questions];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     return shuffled.slice(0, 8);
   });
 
@@ -114,7 +119,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         <div className="mt-12">
           <button
             onClick={onStart}
-            className="inline-block bg-blue-600 text-white text-xl font-bold py-4 px-8 sticker-glossy sticker-emboss hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+            className="inline-block bg-blue-600 text-white text-xl font-bold py-4 px-8 sticker-glossy sticker-emboss hover:scale-105 active:scale-95 transition-transform"
           >
             Start Real Game 🎮
           </button>
